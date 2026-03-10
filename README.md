@@ -6,8 +6,8 @@ Interactive resume/portfolio website built for GitHub Pages.
 
 | Version | URL |
 |---------|-----|
-| V1 — Dark Terminal | `https://govind618.github.io/Resume.html` |
-| V2 — Editorial | `https://govind618.github.io/Resume_v2.html` |
+| V1 — Dark Terminal | `https://govind618.github.io/` |
+| V2 — Editorial | `https://govind618.github.io/v2.html` |
 
 ---
 
