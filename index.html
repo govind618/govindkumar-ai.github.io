@@ -950,7 +950,7 @@
     <div class="contact-grid fade-in">
       <div class="contact-card">
         <div class="contact-label">// Email</div>
-        <div class="contact-val"><a href="/cdn-cgi/l/email-protection#d9beb6afb0b7bdefe8e199beb4b8b0b5f7bab6b4"><span class="__cf_email__" data-cfemail="43242c352a2d2775727b03242e222a2f6d202c2e">[email&#160;protected]</span></a></div>
+        <div class="contact-val"><a href="mailto:govind618@gmail.com">govind618@gmail.com</a></div>
       </div>
       <div class="contact-card">
         <div class="contact-label">// Phone</div>
@@ -973,7 +973,7 @@
   </footer>
 </main>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // NETWORK CANVAS
 const canvas = document.getElementById('network-canvas');
 const ctx = canvas.getContext('2d');
@@ -1081,4 +1081,17 @@ function buildHeatmap() {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-     
+      entry.target.classList.add('visible');
+      animateBars();
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// INIT
+animateCounters();
+buildHeatmap();
+</script>
+</body>
+</html>
