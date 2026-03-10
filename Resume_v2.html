@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Govind Kumar — Agentic AI Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f5f0e8;
+  --warm-white: #faf8f4;
+  --ink: #0e0e0e;
+  --ink2: #1a1a1a;
+  --mid: #5a5a5a;
+  --light: #9a9a9a;
+  --rule: #d4cfc6;
+  --accent: #c4392b;
+  --accent2: #2b6cb0;
+  --accent3: #2d7d46;
+  --highlight: #f0e040;
+  --panel: #f0ebe0;
+  --dark-panel: #1a1a2e;
+  --neon: #00e5ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--warm-white);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN TEXTURE ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 56px;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.nav-logo em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  background: var(--ink);
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.nav-cta:hover { background: var(--accent); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 56px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+
+.hero-left {
+  padding: 80px 64px 80px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 32px;
+}
+
+.eyebrow-line { flex: 0 0 40px; height: 1px; background: var(--rule); }
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 7vw, 108px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.hero-name-italic {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 7vw, 108px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  margin-bottom: 40px;
+}
+
+.hero-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--mid);
+  max-width: 420px;
+  margin-bottom: 48px;
+}
+
+.hero-desc strong { color: var(--ink); font-weight: 500; }
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid var(--rule);
+  color: var(--mid);
+  background: var(--warm-white);
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.badge.red { border-color: var(--accent); color: var(--accent); background: rgba(196,57,43,0.05); }
+.badge.blue { border-color: var(--accent2); color: var(--accent2); background: rgba(43,108,176,0.05); }
+.badge.green { border-color: var(--accent3); color: var(--accent3); background: rgba(45,125,70,0.05); }
+
+.hero-stat-row {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.hero-stat {
+  flex: 1;
+  padding: 20px 16px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--ink);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.hero-stat-num.red { color: var(--accent); }
+.hero-stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--light);
+}
+
+/* HERO RIGHT — DARK PANEL */
+.hero-right {
+  background: var(--dark-panel);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 64px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,229,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-right::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(196,57,43,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.terminal-window {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.terminal-bar {
+  background: rgba(255,255,255,0.06);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.t-dot { width: 10px; height: 10px; border-radius: 50%; }
+.t-dot.r { background: #ff5f57; }
+.t-dot.y { background: #ffbd2e; }
+.t-dot.g { background: #28c941; }
+
+.terminal-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  margin-left: 8px;
+  letter-spacing: 0.05em;
+}
+
+.terminal-body {
+  padding: 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.t-line { display: flex; gap: 10px; }
+.t-prompt { color: var(--neon); }
+.t-cmd { color: rgba(255,255,255,0.8); }
+.t-output { color: rgba(255,255,255,0.45); padding-left: 20px; }
+.t-highlight { color: var(--neon); }
+.t-green { color: #28c941; }
+.t-red { color: #ff5f57; }
+.t-cursor { display: inline-block; width: 8px; height: 14px; background: var(--neon); animation: blink 1s infinite; vertical-align: middle; }
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-right-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-right-quote {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.45);
+  border-left: 2px solid var(--neon);
+  padding-left: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-right-quote strong { color: rgba(255,255,255,0.8); }
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  overflow: hidden;
+  background: var(--ink);
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.marquee-inner {
+  display: flex;
+  gap: 0;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding: 0 32px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  white-space: nowrap;
+}
+
+.marquee-item span { color: var(--neon); }
+
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* ── SECTION BASE ── */
+.section { padding: 100px 48px; border-bottom: 1px solid var(--rule); }
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--rule); }
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 64px;
+}
+
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ── PROJECTS / AGENTS ── */
+.projects-list { display: flex; flex-direction: column; gap: 0; }
+
+.project-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 32px;
+  align-items: start;
+  padding: 40px 0;
+  border-top: 1px solid var(--rule);
+  transition: background 0.2s;
+  position: relative;
+}
+
+.project-item:last-child { border-bottom: 1px solid var(--rule); }
+
+.project-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--rule);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  transition: color 0.3s;
+}
+
+.project-item:hover .project-num { color: var(--accent); }
+
+.project-body {}
+
+.project-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 8px;
+}
+
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.project-desc {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+
+.project-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  background: var(--panel);
+  color: var(--mid);
+}
+
+.project-meta {
+  text-align: right;
+  min-width: 120px;
+}
+
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent3);
+  margin-bottom: 12px;
+}
+
+.status-pip {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent3);
+  animation: pip 2s infinite;
+}
+
+@keyframes pip { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.project-kpi {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ink);
+  display: block;
+  line-height: 1;
+}
+
+.project-kpi-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--light);
+}
+
+/* ── SKILLS SECTION ── */
+.skills-section {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.skills-section .section-title { color: var(--cream); }
+.skills-section .section-title em { color: var(--neon); }
+.skills-section .section-label { color: rgba(255,255,255,0.3); }
+.skills-section .section-label::after { background: rgba(255,255,255,0.1); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 64px;
+}
+
+.skill-group {
+  background: var(--ink2);
+  padding: 32px;
+  transition: background 0.2s;
+}
+
+.skill-group:hover { background: #242424; }
+
+.skill-group-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neon);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.skill-list li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.skill-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+.skill-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--neon);
+  flex-shrink: 0;
+}
+
+/* ── TIMELINE ── */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+}
+
+.timeline-left {
+  border-right: 1px solid var(--rule);
+  padding-right: 48px;
+  position: sticky;
+  top: 80px;
+  height: fit-content;
+}
+
+.timeline-filter-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 20px;
+}
+
+.timeline-companies { display: flex; flex-direction: column; gap: 0; }
+
+.company-tab {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--light);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: default;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.company-tab.active { color: var(--ink); }
+.company-tab.active::before { content: '→'; color: var(--accent); }
+
+.timeline-right { padding-left: 48px; }
+
+.exp-block { margin-bottom: 56px; padding-bottom: 56px; border-bottom: 1px solid var(--rule); }
+.exp-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.exp-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.exp-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.exp-company {
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.exp-points { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+.exp-points li {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.7;
+  padding-left: 20px;
+  position: relative;
+}
+
+.exp-points li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--rule);
+}
+
+.exp-points li strong { color: var(--ink); font-weight: 500; }
+
+/* ── EDUCATION STRIP ── */
+.edu-strip {
+  background: var(--panel);
+  padding: 64px 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background-color: var(--rule);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.edu-card {
+  background: var(--warm-white);
+  padding: 32px;
+}
+
+.edu-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 12px;
+}
+
+.edu-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.edu-sub {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  padding: 100px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.contact-left {}
+
+.contact-big {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+
+.contact-big em { color: var(--accent); font-style: italic; }
+
+.contact-sub {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 40px;
+}
+
+.contact-links { display: flex; flex-direction: column; gap: 0; }
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.contact-link:last-child { border-bottom: 1px solid var(--rule); }
+
+.cl-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--light);
+}
+
+.cl-val {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+
+.contact-link:hover .cl-val { color: var(--accent); }
+
+.cl-arrow { color: var(--rule); font-size: 18px; transition: all 0.2s; }
+.contact-link:hover .cl-arrow { color: var(--accent); transform: translateX(4px); }
+
+.contact-right {
+  background: var(--ink);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-right::before {
+  content: '"';
+  position: absolute;
+  top: -40px; left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 200px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.contact-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-quote-attr {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.contact-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: -0.01em;
+}
+
+.footer-name em { color: var(--neon); font-style: italic; }
+
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ── FADE IN ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 80px 24px; border-right: none; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .section { padding: 60px 24px; }
+  .projects-list .project-item { grid-template-columns: 48px 1fr; }
+  .project-meta { display: none; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .timeline-grid { grid-template-columns: 1fr; }
+  .timeline-left { display: none; }
+  .timeline-right { padding-left: 0; }
+  .edu-strip { grid-template-columns: 1fr 1fr; padding: 40px 24px; }
+  .contact-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+  footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Govind <em>Kumar</em></div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#timeline">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:govind618@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      Agentic AI Architect · Delhi, India
+    </div>
+    <div class="hero-name">GOVIND</div>
+    <div class="hero-name-italic">Kumar.</div>
+
+    <p class="hero-desc">
+      I build <strong>AI systems that work in production</strong> — not just demos. 15+ years of telecom domain depth across <strong>Airtel · Ericsson · IBM</strong>, now applied to architecting autonomous agents, RAG pipelines, and closed-loop network automation at national scale.
+    </p>
+
+    <div class="hero-badges">
+      <span class="badge red">LangGraph</span>
+      <span class="badge red">LlamaIndex</span>
+      <span class="badge red">RAG</span>
+      <span class="badge blue">Agentic AI</span>
+      <span class="badge blue">ReAct Agents</span>
+      <span class="badge blue">MCP</span>
+      <span class="badge green">PySpark</span>
+      <span class="badge green">PyTorch</span>
+      <span class="badge">vLLM</span>
+      <span class="badge">FAISS</span>
+      <span class="badge">Qdrant</span>
+      <span class="badge">Cisco NSO</span>
+    </div>
+
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="15">0</span>
+        <div class="hero-stat-label">Yrs Exp</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num red" data-target="40" data-suffix="K+">0</span>
+        <div class="hero-stat-label">RAG Docs</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="100" data-suffix="GB">0</span>
+        <div class="hero-stat-label">Data/Day</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num red" data-text="ZERO">—</span>
+        <div class="hero-stat-label">Human Loop</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="terminal-window">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div>
+        <div class="t-dot y"></div>
+        <div class="t-dot g"></div>
+        <span class="terminal-title">govind@airtel-noc ~ agent_system</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> deploy voice_agent --env production</span></div>
+        <div class="t-line t-output">Initializing LangGraph pipeline...</div>
+        <div class="t-line t-output">Loading STT/TTS modules... <span class="t-green">OK</span></div>
+        <div class="t-line t-output">Connecting to ticket system... <span class="t-green">OK</span></div>
+        <div class="t-line t-output">Agent deployed. Human-in-loop: <span class="t-red">FALSE</span></div>
+        <div class="t-line" style="margin-top:8px"><span class="t-prompt">$</span><span class="t-cmd"> status CELLIE --rag</span></div>
+        <div class="t-line t-output">Documents indexed: <span class="t-highlight">40,247</span></div>
+        <div class="t-line t-output">Vector store: <span class="t-highlight">FAISS · LIVE</span></div>
+        <div class="t-line t-output">NOC teams served: <span class="t-green">ACTIVE</span></div>
+        <div class="t-line" style="margin-top:8px"><span class="t-prompt">$</span><span class="t-cmd"> forecast --model xgboost+ann+prophet</span></div>
+        <div class="t-line t-output">Scale: <span class="t-highlight">PAN INDIA</span> · Cell/Sector/Site</div>
+        <div class="t-line t-output">ETL pipeline: <span class="t-highlight">~100GB/day</span></div>
+        <div class="t-line t-output">Status: <span class="t-green">RUNNING</span> <span class="t-cursor"></span></div>
+      </div>
+    </div>
+
+    <div class="hero-right-title">The telecom depth is the moat.</div>
+    <p class="hero-right-quote">
+      Anyone can learn LangGraph in 3 months. Nobody can fake <strong>15 years of understanding why a cell tower drops at 2am</strong> — and building an AI that fixes it before a human wakes up.
+    </p>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Agentic AI <span>·</span></span>
+    <span class="marquee-item">LangGraph <span>·</span></span>
+    <span class="marquee-item">RAG Pipelines <span>·</span></span>
+    <span class="marquee-item">Voice Agents <span>·</span></span>
+    <span class="marquee-item">Telecom OSS/BSS <span>·</span></span>
+    <span class="marquee-item">Closed-Loop Automation <span>·</span></span>
+    <span class="marquee-item">PAN India Scale <span>·</span></span>
+    <span class="marquee-item">LlamaIndex <span>·</span></span>
+    <span class="marquee-item">FAISS · Qdrant <span>·</span></span>
+    <span class="marquee-item">Cisco NSO <span>·</span></span>
+    <span class="marquee-item">GPU Workloads <span>·</span></span>
+    <span class="marquee-item">M.Tech AI/ML BITS Pilani <span>·</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Agentic AI <span>·</span></span>
+    <span class="marquee-item">LangGraph <span>·</span></span>
+    <span class="marquee-item">RAG Pipelines <span>·</span></span>
+    <span class="marquee-item">Voice Agents <span>·</span></span>
+    <span class="marquee-item">Telecom OSS/BSS <span>·</span></span>
+    <span class="marquee-item">Closed-Loop Automation <span>·</span></span>
+    <span class="marquee-item">PAN India Scale <span>·</span></span>
+    <span class="marquee-item">LlamaIndex <span>·</span></span>
+    <span class="marquee-item">FAISS · Qdrant <span>·</span></span>
+    <span class="marquee-item">Cisco NSO <span>·</span></span>
+    <span class="marquee-item">GPU Workloads <span>·</span></span>
+    <span class="marquee-item">M.Tech AI/ML BITS Pilani <span>·</span></span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="section-label">Selected Systems</div>
+  <h2 class="section-title">Production <em>AI Work</em></h2>
+  <div class="projects-list reveal">
+
+    <div class="project-item">
+      <div class="project-num">01</div>
+      <div class="project-body">
+        <div class="project-tag">Agentic AI · Voice · LangGraph · STT/TTS</div>
+        <div class="project-title">Voice Broadband Troubleshooting Agent</div>
+        <p class="project-desc">Autonomously calls customers from open tickets, walks through a diagnostic protocol using LangGraph-orchestrated tool calls, executes remediation steps, and closes the ticket — with zero human involvement at any stage. Built end-to-end at Airtel for live production traffic.</p>
+        <div class="project-chips">
+          <span class="chip">LangGraph</span><span class="chip">STT / TTS</span><span class="chip">Tool Calling</span><span class="chip">Auto-remediation</span><span class="chip">Production</span>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-status"><div class="status-pip"></div> Live</div>
+        <span class="project-kpi">0</span>
+        <span class="project-kpi-label">Humans in Loop</span>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">02</div>
+      <div class="project-body">
+        <div class="project-tag">RAG · LlamaIndex · FAISS · GenAI</div>
+        <div class="project-title">CELLIE — Internal NOC RAG Chatbot</div>
+        <p class="project-desc">Airtel's first internal GenAI system. Indexes 40,000+ telecom documents — MOPs, SOPs, runbooks, fault guides — with LlamaIndex + FAISS. NOC engineers query it in natural language for fault resolution guidance, reducing mean time to resolution significantly.</p>
+        <div class="project-chips">
+          <span class="chip">LlamaIndex</span><span class="chip">FAISS</span><span class="chip">RAG</span><span class="chip">Metadata Retrieval</span><span class="chip">NOC Teams</span>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-status"><div class="status-pip"></div> Active</div>
+        <span class="project-kpi">40K+</span>
+        <span class="project-kpi-label">Docs Indexed</span>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">03</div>
+      <div class="project-body">
+        <div class="project-tag">ML · XGBoost · ANN · Prophet · PySpark</div>
+        <div class="project-title">4G Payload Forecasting Engine</div>
+        <p class="project-desc">Cell/sector/site level forecasting across the entire Airtel network — PAN India. Ensemble of XGBoost, ANN, and Prophet models with a full production ETL pipeline processing ~100 GB/day of raw RAN performance data, feeding live monitoring dashboards.</p>
+        <div class="project-chips">
+          <span class="chip">XGBoost</span><span class="chip">ANN</span><span class="chip">Prophet</span><span class="chip">PySpark</span><span class="chip">ETL</span><span class="chip">PAN India</span>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-status"><div class="status-pip"></div> Running</div>
+        <span class="project-kpi">100GB</span>
+        <span class="project-kpi-label">Processed Daily</span>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">04</div>
+      <div class="project-body">
+        <div class="project-tag">Closed-Loop · Cisco NSO · Netcool · Automation</div>
+        <div class="project-title">Network Closed-Loop Automation</div>
+        <p class="project-desc">Fault detection → root cause identification → automated remediation → rollback pipeline running across MPLS, CEN, and ISP domains. Orchestrated through Cisco NSO with Netcool and Situation Manager integration. Reduces manual NOC intervention at national scale.</p>
+        <div class="project-chips">
+          <span class="chip">Cisco NSO</span><span class="chip">Netcool/OMNIbus</span><span class="chip">MPLS</span><span class="chip">Auto-rollback</span><span class="chip">SDN/NFV</span>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-status"><div class="status-pip"></div> Active</div>
+        <span class="project-kpi">E2E</span>
+        <span class="project-kpi-label">Auto Remediation</span>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">05</div>
+      <div class="project-body">
+        <div class="project-tag">GenAI · Document Retrieval · MOP/SOP Validation</div>
+        <div class="project-title">GenAI MOP/SOP Validation Assistant</div>
+        <p class="project-desc">Validates network change procedures before engineers execute them using metadata-enriched document retrieval. Surfaces conflicting instructions, missing steps, and risk flags from the corporate knowledge base — reducing misconfiguration risk during planned maintenance windows.</p>
+        <div class="project-chips">
+          <span class="chip">Metadata RAG</span><span class="chip">GenAI</span><span class="chip">Risk Reduction</span><span class="chip">NOC Ops</span>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="project-status"><div class="status-pip"></div> Active</div>
+        <span class="project-kpi">Risk↓</span>
+        <span class="project-kpi-label">Validation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section skills-section" id="skills">
+  <div class="section-label" style="color:rgba(255,255,255,0.3)">Capabilities</div>
+  <h2 class="section-title">Full <em>Skill Stack</em></h2>
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-title">// Agentic AI & GenAI</div>
+      <ul class="skill-list">
+        <li>LangGraph <div class="skill-dot"></div></li>
+        <li>LlamaIndex <div class="skill-dot"></div></li>
+        <li>CrewAI <div class="skill-dot"></div></li>
+        <li>Google ADK <div class="skill-dot"></div></li>
+        <li>MCP Protocol <div class="skill-dot"></div></li>
+        <li>RAG Pipelines <div class="skill-dot"></div></li>
+        <li>ReAct Agents <div class="skill-dot"></div></li>
+        <li>Tool Calling <div class="skill-dot"></div></li>
+        <li>Prompt Engineering <div class="skill-dot"></div></li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">// LLM · ML · Data</div>
+      <ul class="skill-list">
+        <li>OpenAI API <div class="skill-dot"></div></li>
+        <li>Ollama · vLLM <div class="skill-dot"></div></li>
+        <li>FAISS · Qdrant <div class="skill-dot"></div></li>
+        <li>GPU / CUDA / A40 <div class="skill-dot"></div></li>
+        <li>XGBoost · ANN <div class="skill-dot"></div></li>
+        <li>PyTorch · TensorFlow <div class="skill-dot"></div></li>
+        <li>PySpark <div class="skill-dot"></div></li>
+        <li>Time-Series Forecasting <div class="skill-dot"></div></li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">// Telecom · Infra · DevOps</div>
+      <ul class="skill-list">
+        <li>IBM Netcool/OMNIbus <div class="skill-dot"></div></li>
+        <li>Netcool Impact <div class="skill-dot"></div></li>
+        <li>Cisco NSO <div class="skill-dot"></div></li>
+        <li>Ericsson ENM / OSS-RC <div class="skill-dot"></div></li>
+        <li>Python (Advanced) <div class="skill-dot"></div></li>
+        <li>Docker · Kubernetes <div class="skill-dot"></div></li>
+        <li>REST APIs · Linux <div class="skill-dot"></div></li>
+        <li>Grafana · Selenium <div class="skill-dot"></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section" id="timeline">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">15 Years of <em>Experience</em></h2>
+  <div class="timeline-grid reveal">
+    <div class="timeline-left">
+      <div class="timeline-filter-title">Companies</div>
+      <div class="timeline-companies">
+        <div class="company-tab active">Bharti Airtel</div>
+        <div class="company-tab">Ericsson (Senior)</div>
+        <div class="company-tab">IBM India</div>
+        <div class="company-tab">Ericsson</div>
+      </div>
+    </div>
+    <div class="timeline-right">
+      <div class="exp-block">
+        <div class="exp-period">Sep 2017 — Present</div>
+        <div class="exp-role">Lead — Network Analytics & AI</div>
+        <div class="exp-company">Bharti Airtel India</div>
+        <ul class="exp-points">
+          <li>Architected <strong>voice-based broadband troubleshooting agent</strong> (LangGraph + STT/TTS) — autonomous end-to-end with zero human intervention</li>
+          <li>Built <strong>CELLIE</strong> — Airtel's first internal RAG chatbot on 40,000+ telecom documents using LlamaIndex + FAISS, deployed to NOC teams</li>
+          <li>Developed <strong>GenAI MOP/SOP validation assistant</strong> with metadata-enriched document retrieval for NOC engineers</li>
+          <li>4G payload forecasting PAN India at cell/sector/site level — XGBoost, ANN, Prophet in production with ~100 GB/day ETL pipeline</li>
+          <li>PySpark-based <strong>Customer Experience Index</strong> correlating RAN KPIs with complaint volumes proactively</li>
+          <li>Led closed-loop automation across MPLS/CEN/ISP using Cisco NSO, Netcool, and Situation Manager</li>
+        </ul>
+      </div>
+      <div class="exp-block">
+        <div class="exp-period">Sep 2014 — Aug 2017</div>
+        <div class="exp-role">Senior Solution Integrator</div>
+        <div class="exp-company">Ericsson India Global Services</div>
+        <ul class="exp-points">
+          <li>Full FM solution deployment for <strong>Telkomsel Indonesia</strong> (15-person team): Netcool suite, EMS integration, correlation, and ticketing</li>
+          <li>Automated ENM CLI/GUI test cases for <strong>AT&T</strong> using Selenium and Robot Framework</li>
+          <li>MORAN 2G RAN Sharing OSS for Airtel with Netcool-to-Netcool FM integration</li>
+        </ul>
+      </div>
+      <div class="exp-block">
+        <div class="exp-period">Sep 2012 — Sep 2014</div>
+        <div class="exp-role">Netcool Specialist</div>
+        <div class="exp-company">IBM India Pvt. Ltd.</div>
+        <ul class="exp-points">
+          <li>Developed Netcool–Remedy <strong>auto/semi-auto incident ticketing</strong> interface for Airtel</li>
+          <li>IBM Tivoli Monitoring production performance tuning (TEPS, probe-level optimisation)</li>
+        </ul>
+      </div>
+      <div class="exp-block">
+        <div class="exp-period">Jan 2010 — Sep 2012</div>
+        <div class="exp-role">Solution Integrator</div>
+        <div class="exp-company">Ericsson India Global Services</div>
+        <ul class="exp-points">
+          <li>Integrated <strong>Vodafone UK</strong> domain managers (OSSRC, ALU UTRAN, Netviewer) into Ericsson MSDP OneFM</li>
+          <li>Delivered <strong>MTN Ghana</strong> OSSRC integration</li>
+          <li>Developed filtration framework for OneFM R6 — toggle, flood, and transient filters</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<div class="edu-strip">
+  <div class="edu-card">
+    <div class="edu-tag">// Post-grad · 2023–2025</div>
+    <div class="edu-title">M.Tech — AI / ML</div>
+    <div class="edu-sub">BITS Pilani<br>Machine Learning · Deep Learning · AI Systems</div>
+  </div>
+  <div class="edu-card">
+    <div class="edu-tag">// Undergrad · 2005–2009</div>
+    <div class="edu-title">B.Tech — Computer Science</div>
+    <div class="edu-sub">NIT Patna<br>Algorithms · Systems · Software Engineering</div>
+  </div>
+  <div class="edu-card">
+    <div class="edu-tag">// Certifications</div>
+    <div class="edu-title">Professional Certs</div>
+    <div class="edu-sub">IBM Netcool/OMNIbus 7.3.1 · Impact v6.1 · RHCSA · Cisco NSO201 & NSO300 · Deep Learning · Data Science</div>
+  </div>
+  <div class="edu-card">
+    <div class="edu-tag">// Recognition</div>
+    <div class="edu-title">Awards</div>
+    <div class="edu-sub">Competent Communicator · Toastmasters 2nd Runner-Up · Fast & Flawless — Ericsson · Manager's Choice — IBM</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-left">
+    <h2 class="contact-big">Let's <em>Build</em><br>Something.</h2>
+    <p class="contact-sub">Open to conversations on Agentic AI, multi-agent systems, telecom AI architecture, and senior engineering roles at companies building serious AI infrastructure.</p>
+    <div class="contact-links">
+      <a href="mailto:govind618@gmail.com" class="contact-link">
+        <span class="cl-label">Email</span>
+        <span class="cl-val">govind618@gmail.com</span>
+        <span class="cl-arrow">→</span>
+      </a>
+      <a href="tel:+918745812500" class="contact-link">
+        <span class="cl-label">Phone</span>
+        <span class="cl-val">+91 8745 812500</span>
+        <span class="cl-arrow">→</span>
+      </a>
+      <div class="contact-link">
+        <span class="cl-label">Location</span>
+        <span class="cl-val">Delhi, India</span>
+        <span class="cl-arrow" style="color:var(--rule)">·</span>
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <p class="contact-quote">"The best AI isn't the one that generates text. It's the one that solves real problems while you sleep."</p>
+    <div class="contact-quote-attr">— What drives every system I build</div>
+    <div class="contact-tags">
+      <span class="contact-tag">Agentic AI</span>
+      <span class="contact-tag">Multi-Agent Systems</span>
+      <span class="contact-tag">LLM Production</span>
+      <span class="contact-tag">Telecom AI</span>
+      <span class="contact-tag">Network Automation</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Govind <em>Kumar</em></div>
+  <div class="footer-copy">Agentic AI Architect · Delhi, India · 2025</div>
+</footer>
+
+<script>
+// COUNTER ANIMATION
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const text = el.dataset.text;
+    if (text) { el.textContent = text; return; }
+    let current = 0;
+    const step = target / 50;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = Math.floor(current) + suffix;
+    }, 20);
+  });
+}
+
+// INTERSECTION OBSERVER FOR REVEALS
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+animateCounters();
+</script>
+</body>
+</html>
